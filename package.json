@@ -1,6 +1,6 @@
 {
-  "name": "diff-calc",
-  "version": "1.0.0",
+  "name": "diff-calc-kmadorin",
+  "version": "0.0.1",
   "description": "diffs calculator, second hexlet project (frontend prof)",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "eslint": "eslint"
   },
   "bin": {
-    "brain-games": "dist/bin/brain-games.js"
+    "gendiff": "dist/bin/gendiff.js"
   },
   "files": [
     "dist"
