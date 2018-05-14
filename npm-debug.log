@@ -1,0 +1,132 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/mac/.nvm/versions/node/v5.2.0/bin/node',
+1 verbose cli   '/Users/mac/.nvm/versions/node/v5.2.0/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@4.1.1
+3 info using node@v5.2.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/mac/Desktop/Projects/hexlet/diff-calc',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/mac/.npm/diff-calc-kmadorin/0.0.2/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/mac/.npm correctMkdir not in flight; initializing
+10 info lifecycle diff-calc-kmadorin@0.0.2~prepublish: diff-calc-kmadorin@0.0.2
+11 silly lifecycle diff-calc-kmadorin@0.0.2~prepublish: no script for prepublish, continuing
+12 info lifecycle diff-calc-kmadorin@0.0.2~prepare: diff-calc-kmadorin@0.0.2
+13 silly lifecycle diff-calc-kmadorin@0.0.2~prepare: no script for prepare, continuing
+14 verbose tar pack [ '/Users/mac/.npm/diff-calc-kmadorin/0.0.2/package.tgz',
+14 verbose tar pack   '/Users/mac/Desktop/Projects/hexlet/diff-calc' ]
+15 verbose tarball /Users/mac/.npm/diff-calc-kmadorin/0.0.2/package.tgz
+16 verbose folder /Users/mac/Desktop/Projects/hexlet/diff-calc
+17 verbose addLocalTarball adding from inside cache /Users/mac/.npm/diff-calc-kmadorin/0.0.2/package.tgz
+18 verbose correctMkdir /Users/mac/.npm correctMkdir not in flight; initializing
+19 silly cache afterAdd diff-calc-kmadorin@0.0.2
+20 verbose afterAdd /Users/mac/.npm/diff-calc-kmadorin/0.0.2/package/package.json not in flight; writing
+21 verbose correctMkdir /Users/mac/.npm correctMkdir not in flight; initializing
+22 verbose afterAdd /Users/mac/.npm/diff-calc-kmadorin/0.0.2/package/package.json written
+23 silly publish { name: 'diff-calc-kmadorin',
+23 silly publish   version: '0.0.2',
+23 silly publish   description: 'diffs calculator, second hexlet project (frontend prof)',
+23 silly publish   main: 'index.js',
+23 silly publish   scripts:
+23 silly publish    { 'babel-node': 'babel-node',
+23 silly publish      build: 'NODE_ENV=production babel src --out-dir dist --source-maps inline',
+23 silly publish      prepublishOnly: 'npm run build',
+23 silly publish      eslint: 'eslint' },
+23 silly publish   bin: { gendiff: 'dist/bin/gendiff.js' },
+23 silly publish   files: [ 'dist' ],
+23 silly publish   repository:
+23 silly publish    { type: 'git',
+23 silly publish      url: 'git+https://github.com/kmadorin/project-lvl2-s257.git' },
+23 silly publish   author: { name: 'Kirill Madorin' },
+23 silly publish   license: 'ISC',
+23 silly publish   bugs: { url: 'https://github.com/kmadorin/project-lvl2-s257/issues' },
+23 silly publish   homepage: 'https://github.com/kmadorin/project-lvl2-s257#readme',
+23 silly publish   devDependencies:
+23 silly publish    { 'babel-cli': '^6.26.0',
+23 silly publish      'babel-core': '^6.26.3',
+23 silly publish      'babel-eslint': '^8.2.3',
+23 silly publish      'babel-preset-env': '^1.7.0',
+23 silly publish      'babel-preset-stage-0': '^6.24.1',
+23 silly publish      eslint: '^4.19.1',
+23 silly publish      'eslint-config-airbnb-base': '^12.1.0',
+23 silly publish      'eslint-plugin-import': '^2.11.0' },
+23 silly publish   dependencies: { commander: '^2.15.1' },
+23 silly publish   readme: '[![Build Status](https://travis-ci.org/kmadorin/project-lvl2-s257.svg?branch=master)](https://travis-ci.org/kmadorin/project-lvl2-s257)\n<a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>\n<a href="https://codeclimate.com/github/codeclimate/codeclimate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage" /></a>',
+23 silly publish   readmeFilename: 'README.md',
+23 silly publish   gitHead: '564589414eda167dde28b31fcb094c72b87e260f',
+23 silly publish   _id: 'diff-calc-kmadorin@0.0.2',
+23 silly publish   _shasum: '58f99b37769eb0834c5253bea02c7b4f87d323b3',
+23 silly publish   _from: '.' }
+24 info lifecycle diff-calc-kmadorin@0.0.2~prepublishOnly: diff-calc-kmadorin@0.0.2
+25 verbose lifecycle diff-calc-kmadorin@0.0.2~prepublishOnly: unsafe-perm in lifecycle true
+26 verbose lifecycle diff-calc-kmadorin@0.0.2~prepublishOnly: PATH: /Users/mac/.nvm/versions/node/v5.2.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/mac/Desktop/Projects/hexlet/diff-calc/node_modules/.bin:/usr/local/opt/mysql@5.6/bin:/Users/mac/.rvm/gems/ruby-2.0.0-p648/bin/usr/local/bin:/Users/mac/.rvm/gems/ruby-2.0.0-p648/bin:/Users/mac/.rvm/gems/ruby-2.0.0-p648@global/bin:/Users/mac/.rvm/rubies/ruby-2.0.0-p648/bin:/Users/mac/.nvm/versions/node/v5.2.0/bin:/Users/mac/apache-maven-3.5.0/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/mac/bin:/usr/local/git/bin:/usr/local/MacGPG2/bin:/Applications/DevDesktop/drush:/Applications/DevDesktop/drush:/Users/mac/.rvm/bin:/Applications/DevDesktop/drush:/Users/mac/.rvm/bin
+27 verbose lifecycle diff-calc-kmadorin@0.0.2~prepublishOnly: CWD: .
+28 silly lifecycle diff-calc-kmadorin@0.0.2~prepublishOnly: Args: [ '-c', 'npm run build' ]
+29 silly lifecycle diff-calc-kmadorin@0.0.2~prepublishOnly: Returned: code: 0  signal: null
+30 verbose getPublishConfig undefined
+31 silly mapToRegistry name diff-calc-kmadorin
+32 silly mapToRegistry using default registry
+33 silly mapToRegistry registry https://registry.npmjs.org/
+34 silly mapToRegistry data Result {
+34 silly mapToRegistry   raw: 'diff-calc-kmadorin',
+34 silly mapToRegistry   scope: null,
+34 silly mapToRegistry   escapedName: 'diff-calc-kmadorin',
+34 silly mapToRegistry   name: 'diff-calc-kmadorin',
+34 silly mapToRegistry   rawSpec: '',
+34 silly mapToRegistry   spec: 'latest',
+34 silly mapToRegistry   type: 'tag' }
+35 silly mapToRegistry uri https://registry.npmjs.org/diff-calc-kmadorin
+36 verbose publish registryBase https://registry.npmjs.org/
+37 silly publish uploading /Users/mac/.npm/diff-calc-kmadorin/0.0.2/package.tgz
+38 verbose request uri https://registry.npmjs.org/diff-calc-kmadorin
+39 verbose request sending authorization for write operation
+40 info attempt registry request try #1 at 1:20:21 PM
+41 verbose request using bearer token for auth
+42 verbose request id 1256973a9254c0f1
+43 http request PUT https://registry.npmjs.org/diff-calc-kmadorin
+44 http 403 https://registry.npmjs.org/diff-calc-kmadorin
+45 verbose headers { 'content-type': 'application/json',
+45 verbose headers   'cache-control': 'max-age=300',
+45 verbose headers   'content-length': '93',
+45 verbose headers   'accept-ranges': 'bytes',
+45 verbose headers   date: 'Mon, 14 May 2018 10:20:22 GMT',
+45 verbose headers   via: '1.1 varnish',
+45 verbose headers   connection: 'keep-alive',
+45 verbose headers   'x-served-by': 'cache-bma7030-BMA',
+45 verbose headers   'x-cache': 'MISS',
+45 verbose headers   'x-cache-hits': '0',
+45 verbose headers   'x-timer': 'S1526293221.393538,VS0,VE1163',
+45 verbose headers   vary: 'Accept-Encoding, Accept' }
+46 verbose request invalidating /Users/mac/.npm/registry.npmjs.org/diff-calc-kmadorin on PUT
+47 error publish Failed PUT 403
+48 verbose stack Error: You cannot publish over the previously published versions: 0.0.2. : diff-calc-kmadorin
+48 verbose stack     at makeError (/Users/mac/.nvm/versions/node/v5.2.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:304:12)
+48 verbose stack     at CachingRegistryClient.<anonymous> (/Users/mac/.nvm/versions/node/v5.2.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:292:14)
+48 verbose stack     at Request._callback (/Users/mac/.nvm/versions/node/v5.2.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:212:14)
+48 verbose stack     at Request.self.callback (/Users/mac/.nvm/versions/node/v5.2.0/lib/node_modules/npm/node_modules/request/request.js:186:22)
+48 verbose stack     at emitTwo (events.js:88:13)
+48 verbose stack     at Request.emit (events.js:173:7)
+48 verbose stack     at Request.<anonymous> (/Users/mac/.nvm/versions/node/v5.2.0/lib/node_modules/npm/node_modules/request/request.js:1081:10)
+48 verbose stack     at emitOne (events.js:78:13)
+48 verbose stack     at Request.emit (events.js:170:7)
+48 verbose stack     at IncomingMessage.<anonymous> (/Users/mac/.nvm/versions/node/v5.2.0/lib/node_modules/npm/node_modules/request/request.js:1001:12)
+49 verbose statusCode 403
+50 verbose pkgid diff-calc-kmadorin
+51 verbose cwd /Users/mac/Desktop/Projects/hexlet/diff-calc
+52 error Darwin 16.7.0
+53 error argv "/Users/mac/.nvm/versions/node/v5.2.0/bin/node" "/Users/mac/.nvm/versions/node/v5.2.0/bin/npm" "publish"
+54 error node v5.2.0
+55 error npm  v4.1.1
+56 error code E403
+57 error You cannot publish over the previously published versions: 0.0.2. : diff-calc-kmadorin
+58 error If you need help, you may report this error at:
+58 error     <https://github.com/npm/npm/issues>
+59 verbose exit [ 1, true ]
