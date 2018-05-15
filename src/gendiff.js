@@ -33,9 +33,4 @@ const gendiff = (pathToFile1, pathToFile2) => {
   return makeDiffStr(f1obj, f2obj);
 }
 
-const json1 = './__tests__/__fixtures__/JSON/1.json';
-const json2 = './__tests__/__fixtures__/JSON/2.json';
-
-console.log(gendiff(json1, json2));
-
 export default gendiff;
