@@ -1,9 +1,10 @@
 {
   "name": "diff-calc-kmadorin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "diffs calculator, second hexlet project (frontend prof)",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "babel-node": "babel-node",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "prepublishOnly": "npm run build",
@@ -15,6 +16,9 @@
   "files": [
     "dist"
   ],
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kmadorin/project-lvl2-s257.git"
@@ -33,9 +37,13 @@
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.11.0"
+    "eslint-plugin-import": "^2.11.0",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3"
   },
   "dependencies": {
-    "commander": "^2.15.1"
+    "commander": "^2.15.1",
+    "jest-cli": "^22.4.3",
+    "lodash": "^4.17.10"
   }
 }
