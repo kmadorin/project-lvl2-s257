@@ -8,3 +8,4 @@ export default () => {
     .option('-f, --format [type]', 'Output format')
     .parse(process.argv);
 };
+
