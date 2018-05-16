@@ -1,4 +1,5 @@
 import { safeLoad, safeDump } from 'js-yaml';
+import ini from 'ini';
 
 const yamlParser = {
   parse: safeLoad, stringify: safeDump,
@@ -11,6 +12,10 @@ const parsers = {
   },
   '.yaml': yamlParser,
   '.yml': yamlParser,
+  '.ini': {
+    parse: ini.parse,
+    stringify: ini.stringify,
+  },
 };
 
 export default (format) => {

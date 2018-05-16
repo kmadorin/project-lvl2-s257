@@ -1,6 +1,6 @@
 {
   "name": "diff-calc-kmadorin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "diffs calculator, second hexlet project (frontend prof)",
   "main": "index.js",
   "scripts": {
@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "commander": "^2.15.1",
+    "ini": "^1.3.5",
     "jest-cli": "^22.4.3",
     "js-yaml": "^3.11.0",
     "lodash": "^4.17.10"
