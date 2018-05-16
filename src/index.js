@@ -1,5 +1,7 @@
 import fs from 'fs';
 import _ from 'lodash';
+import path from 'path';
+import getParser from './parsers';
 
 const makeDiffStr = (obj1, obj2) => {
   const uniqueKeys = _.union(_.keys(obj1), _.keys(obj2));
@@ -22,8 +24,11 @@ const makeDiffStr = (obj1, obj2) => {
 };
 
 const gendiff = (pathToFile1, pathToFile2) => {
-  const f1obj = JSON.parse(fs.readFileSync(pathToFile1).toString());
-  const f2obj = JSON.parse(fs.readFileSync(pathToFile2).toString());
+  const fileTypes = [path.extname(pathToFile1), path.extname(pathToFile2)];
+  const parsers = [getParser(fileTypes[0]), getParser(fileTypes[1])];
+
+  const f1obj = parsers[0].parse(fs.readFileSync(pathToFile1).toString());
+  const f2obj = parsers[1].parse(fs.readFileSync(pathToFile2).toString());
 
   return makeDiffStr(f1obj, f2obj);
 };
