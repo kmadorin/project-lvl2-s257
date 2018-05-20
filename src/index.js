@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import getParser from './parsers';
-import renderAST from './renderer';
+import rendersAST from './renderers';
 import buildAST from './builder';
 
-const gendiff = (pathToFile1, pathToFile2) => {
+const gendiff = (pathToFile1, pathToFile2, rendererType = 'standart') => {
   const file1Type = path.extname(pathToFile1);
   const file2Type = path.extname(pathToFile2);
 
@@ -17,8 +17,8 @@ const gendiff = (pathToFile1, pathToFile2) => {
 
   const ast = buildAST(f1obj, f2obj);
 
-  const result = renderAST(ast);
-  console.log(result);
+  const result = rendersAST[rendererType](ast);
+
   return result;
 };
 
