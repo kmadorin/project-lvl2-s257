@@ -1,45 +1,54 @@
 import _ from 'lodash';
-
 // Tree Structure
-//  Node {
-//   key : value
-//   type: added, removed, updated, notUpdated, nested
-//   oldValue: value or Object
-//   newValue: value or Object
-//   children: node
-//  }
+//
+// Node {
+//  key : value
+//  type: added, removed, updated, notUpdated, nested
+//  oldValue: value or Object
+//  newValue: value or Object
+//  children: node
+// }
 
-const createNode = (key, type, oldValue, newValue, children) =>
-  ({
-    key, type, oldValue, newValue, children,
+const nodeTypes = [
+  {
+    type: 'nested',
+    check: (first, second, key) => (first[key] instanceof Object && second[key] instanceof Object)
+      && !(first[key] instanceof Array && second[key] instanceof Array),
+    process: (first, second, fn) => ({ children: fn(first, second) }),
+  },
+  {
+    type: 'original',
+    check: (first, second, key) => (_.has(first, key) && _.has(second, key)
+      && (first[key] === second[key])),
+    process: first => ({ value: first }),
+  },
+  {
+    type: 'updated',
+    check: (first, second, key) => (_.has(first, key) && _.has(second, key)
+      && (first[key] !== second[key])),
+    process: (first, second) =>
+      ({ oldValue: first, newValue: second }),
+  },
+  {
+    type: 'added',
+    check: (first, second, key) => (!_.has(first, key) && _.has(second, key)),
+    process: (first, second) => ({ value: second }),
+  },
+  {
+    type: 'removed',
+    check: (first, second, key) => (_.has(first, key) && !_.has(second, key)),
+    process: first => ({ value: first }),
+  },
+];
+
+const buildAst = (obj1 = {}, obj2 = {}) => {
+  const uniqKeys = _.union(_.keys(obj1), _.keys(obj2));
+  return uniqKeys.map((key) => {
+    const { type, process } = _.find(nodeTypes, item => item.check(obj1, obj2, key));
+    return { key, type, ...process(obj1[key], obj2[key], buildAst) };
   });
-
-const hasChilden = (firstObjValue, secondObjValue) =>
-  _.isObject(firstObjValue) && _.isObject(secondObjValue);
-
-const isEqual = (firstObjValue, secondObjValue) => firstObjValue === secondObjValue;
-
-const hasNotValue = (obj, key) => !_.has(obj, key);
-
-const buildAst = (f1obj, f2obj) => {
-  const unionKeys = _.union(Object.keys(f1obj), Object.keys(f2obj));
-
-  const result = unionKeys
-    .map((key) => {
-      if (hasChilden(f1obj[key], f2obj[key])) {
-        const children = buildAst(f1obj[key], f2obj[key]);
-        return createNode(key, 'nested', f1obj[key], f2obj[key], children);
-      } else if (hasNotValue(f1obj, key)) {
-        return createNode(key, 'added', f1obj[key], f2obj[key], []);
-      } else if (hasNotValue(f2obj, key)) {
-        return createNode(key, 'removed', f1obj[key], f2obj[key], []);
-      } else if (isEqual(f1obj[key], f2obj[key])) {
-        return createNode(key, 'notUpdated', f1obj[key], f2obj[key], []);
-      }
-      return createNode(key, 'updated', f1obj[key], f2obj[key], []);
-    });
-  return result;
 };
+
 
 export default buildAst;
 

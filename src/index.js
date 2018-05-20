@@ -16,6 +16,7 @@ const gendiff = (pathToFile1, pathToFile2) => {
   const f2obj = parser2.parse(fs.readFileSync(pathToFile2).toString());
 
   const ast = buildAST(f1obj, f2obj);
+
   const result = renderAST(ast);
   console.log(result);
   return result;

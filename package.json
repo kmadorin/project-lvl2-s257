@@ -1,6 +1,6 @@
 {
   "name": "diff-calc-kmadorin",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "diffs calculator, second hexlet project (frontend prof)",
   "main": "index.js",
   "scripts": {

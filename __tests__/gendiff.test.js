@@ -2,16 +2,26 @@ import fs from 'fs';
 import gendiff from '../src';
 
 describe('Comparing flat data', () => {
-  const json1 = './__tests__/__fixtures__/JSON/1.json';
-  const json2 = './__tests__/__fixtures__/JSON/2.json';
+  let json1;
+  let json2;
+  let yml1;
+  let yml2;
+  let ini1;
+  let ini2;
+  let expected;
 
-  const yml1 = './__tests__/__fixtures__/YAML/1.yml';
-  const yml2 = './__tests__/__fixtures__/YAML/2.yml';
+  beforeEach(() => {
+    json1 = './__tests__/__fixtures__/JSON/1.json';
+    json2 = './__tests__/__fixtures__/JSON/2.json';
 
-  const ini1 = './__tests__/__fixtures__/INI/1.ini';
-  const ini2 = './__tests__/__fixtures__/INI/2.ini';
+    yml1 = './__tests__/__fixtures__/YAML/1.yml';
+    yml2 = './__tests__/__fixtures__/YAML/2.yml';
 
-  const expected = fs.readFileSync('__tests__/__fixtures__/expected.txt', 'utf-8').toString();
+    ini1 = './__tests__/__fixtures__/INI/1.ini';
+    ini2 = './__tests__/__fixtures__/INI/2.ini';
+
+    expected = fs.readFileSync('__tests__/__fixtures__/expected.txt', 'utf-8').toString();
+  });
 
   test('test, difference between JSON files', () => {
     expect(gendiff(json1, json2)).toBe(expected);
@@ -28,16 +38,26 @@ describe('Comparing flat data', () => {
 
 
 describe('test, recursive comparison', () => {
-  const json1 = './__tests__/__fixtures__/JSON/recursive/1.json';
-  const json2 = './__tests__/__fixtures__/JSON/recursive/2.json';
+  let json1;
+  let json2;
+  let yml1;
+  let yml2;
+  let ini1;
+  let ini2;
+  let expected;
 
-  const yml1 = './__tests__/__fixtures__/YAML/recursive/1.yml';
-  const yml2 = './__tests__/__fixtures__/YAML/recursive/2.yml';
+  beforeEach(() => {
+    json1 = './__tests__/__fixtures__/JSON/recursive/1.json';
+    json2 = './__tests__/__fixtures__/JSON/recursive/2.json';
 
-  const ini1 = './__tests__/__fixtures__/INI/recursive/1.ini';
-  const ini2 = './__tests__/__fixtures__/INI/recursive/2.ini';
+    yml1 = './__tests__/__fixtures__/YAML/recursive/1.yml';
+    yml2 = './__tests__/__fixtures__/YAML/recursive/2.yml';
 
-  const expected = fs.readFileSync('./__tests__/__fixtures__/expectedRecursive.txt', 'utf8').toString();
+    ini1 = './__tests__/__fixtures__/INI/recursive/1.ini';
+    ini2 = './__tests__/__fixtures__/INI/recursive/2.ini';
+
+    expected = fs.readFileSync('./__tests__/__fixtures__/expectedRecursive.txt', 'utf8').toString();
+  });
 
 
   test('test, difference between JSON files', () => {
