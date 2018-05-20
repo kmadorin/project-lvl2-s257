@@ -23,7 +23,7 @@ const renderNode = (node, level = 0) => {
         renderStr(node.key, node.newValue, '+'),
         renderStr(node.key, node.oldValue, '-'),
       ];
-      return `${_.flatten(res).join('\n')}`;
+      return `${res.join('\n')}`;
     },
     added: () => renderStr(node.key, node.value, '+'),
     removed: () => renderStr(node.key, node.value, '-'),
