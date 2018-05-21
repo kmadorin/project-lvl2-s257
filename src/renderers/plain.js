@@ -17,33 +17,28 @@ const makeDescription = (node) => {
 };
 
 const renderNode = (node, prefixName) => {
-  const plainNode = {
-    ...node,
-    fullName: `${prefixName ? `${prefixName}.` : ''}${node.key}`,
-    action: node.type,
-  };
+  const fullName = `${prefixName ? `${prefixName}.` : ''}${node.key}`;
 
   switch (node.type) {
     case 'nested': {
-      const res = plainNode.children
+      const res = node.children
         .filter(astNode => astNode.type !== 'original')
-        .map(child => renderNode(child, plainNode.fullName));
-      return flatten(res);
+        .map(child => renderNode(child, fullName));
+      return res;
     }
     case 'added': {
-      plainNode.description = ` with ${makeDescription(plainNode)}`;
-      break;
+      return `Property '${fullName}' was ${node.type} with ${makeDescription(node)}`;
     }
     case 'updated': {
-      plainNode.description = `. From ${makeDescription(plainNode)}`;
-      break;
+      return `Property '${fullName}' was ${node.type}. From ${makeDescription(node)}`;
+    }
+    case 'removed': {
+      return `Property '${fullName}' was ${node.type}`;
     }
     default: {
-      break;
+      return '';
     }
   }
-
-  return `Property '${plainNode.fullName}' was ${plainNode.action}${plainNode.description || ''}`;
 };
 
 

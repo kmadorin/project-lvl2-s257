@@ -15,7 +15,7 @@ const renderNode = (node, level = 0) => {
   const renStringFns = {
     nested: () => {
       const res = node.children.map(child => renderNode(child, level + 4));
-      return renderStr(node.key, `{\n${_.flatten(res).join('\n')}\n${' '.repeat(level + 4)}}`);
+      return renderStr(node.key, `{\n${res.join('\n')}\n${' '.repeat(level + 4)}}`);
     },
     original: () => renderStr(node.key, node.value),
     updated: () => {
@@ -23,7 +23,7 @@ const renderNode = (node, level = 0) => {
         renderStr(node.key, node.newValue, '+'),
         renderStr(node.key, node.oldValue, '-'),
       ];
-      return `${_.flatten(res).join('\n')}`;
+      return `${res.join('\n')}`;
     },
     added: () => renderStr(node.key, node.value, '+'),
     removed: () => renderStr(node.key, node.value, '-'),
@@ -35,7 +35,7 @@ const renderNode = (node, level = 0) => {
 
 const render = (ast = []) => {
   const res = ast.map(node => renderNode(node, 0));
-  return `{\n${_.flatten(res).join('\n')}\n}`;
+  return `{\n${res.join('\n')}\n}`;
 };
 
 export default render;

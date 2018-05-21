@@ -1,146 +1,126 @@
 import fs from 'fs';
 import gendiff from '../src';
 
+const buildFilePath = (fileName, extension, folder) => `./__tests__/__fixtures__/${extension.toUpperCase()}/${folder}/${fileName}.${extension}`;
+const buildRecursiveFilePath = (fileName, extension) => buildFilePath(fileName, extension, 'recursive');
+const buildFlatFilePath = (fileName, extension) => buildFilePath(fileName, extension, 'flat');
+
 describe('Comparing flat data', () => {
-  let json1;
-  let json2;
-  let yml1;
-  let yml2;
-  let ini1;
-  let ini2;
   let expected;
 
   beforeEach(() => {
-    json1 = './__tests__/__fixtures__/JSON/1.json';
-    json2 = './__tests__/__fixtures__/JSON/2.json';
-
-    yml1 = './__tests__/__fixtures__/YAML/1.yml';
-    yml2 = './__tests__/__fixtures__/YAML/2.yml';
-
-    ini1 = './__tests__/__fixtures__/INI/1.ini';
-    ini2 = './__tests__/__fixtures__/INI/2.ini';
-
     expected = fs.readFileSync('__tests__/__fixtures__/expected.txt', 'utf-8').toString();
   });
 
   test('test, difference between JSON files', () => {
-    expect(gendiff(json1, json2)).toBe(expected);
+    expect(gendiff(
+      buildFlatFilePath('1', 'json'),
+      buildFlatFilePath('2', 'json'),
+    )).toBe(expected);
   });
 
   test('test, difference between YML files', () => {
-    expect(gendiff(yml1, yml2)).toBe(expected);
+    expect(gendiff(
+      buildFlatFilePath('1', 'yml'),
+      buildFlatFilePath('2', 'yml'),
+    )).toBe(expected);
   });
 
   test('test, difference between INI files', () => {
-    expect(gendiff(ini1, ini2)).toBe(expected);
+    expect(gendiff(
+      buildFlatFilePath('1', 'ini'),
+      buildFlatFilePath('2', 'ini'),
+    )).toBe(expected);
   });
 });
 
 
 describe('test, recursive comparison', () => {
-  let json1;
-  let json2;
-  let yml1;
-  let yml2;
-  let ini1;
-  let ini2;
   let expected;
 
   beforeEach(() => {
-    json1 = './__tests__/__fixtures__/JSON/recursive/1.json';
-    json2 = './__tests__/__fixtures__/JSON/recursive/2.json';
-
-    yml1 = './__tests__/__fixtures__/YAML/recursive/1.yml';
-    yml2 = './__tests__/__fixtures__/YAML/recursive/2.yml';
-
-    ini1 = './__tests__/__fixtures__/INI/recursive/1.ini';
-    ini2 = './__tests__/__fixtures__/INI/recursive/2.ini';
-
     expected = fs.readFileSync('./__tests__/__fixtures__/expectedRecursive.txt', 'utf8').toString();
   });
 
 
   test('test, difference between JSON files', () => {
-    expect(gendiff(json1, json2)).toBe(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'json'),
+      buildRecursiveFilePath('2', 'json'),
+    )).toBe(expected);
   });
 
   test('test, difference between YML files', () => {
-    expect(gendiff(yml1, yml2)).toBe(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'yml'),
+      buildRecursiveFilePath('2', 'yml'),
+    )).toBe(expected);
   });
 
   test('test, difference between INI files', () => {
-    expect(gendiff(ini1, ini2)).toBe(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'ini'),
+      buildRecursiveFilePath('2', 'ini'),
+    )).toBe(expected);
   });
 });
 
 describe('test, plain format', () => {
-  let json1;
-  let json2;
-  let yml1;
-  let yml2;
-  let ini1;
-  let ini2;
   let expected;
 
   beforeEach(() => {
-    json1 = './__tests__/__fixtures__/JSON/recursive/1.json';
-    json2 = './__tests__/__fixtures__/JSON/recursive/2.json';
-
-    yml1 = './__tests__/__fixtures__/YAML/recursive/1.yml';
-    yml2 = './__tests__/__fixtures__/YAML/recursive/2.yml';
-
-    ini1 = './__tests__/__fixtures__/INI/recursive/1.ini';
-    ini2 = './__tests__/__fixtures__/INI/recursive/2.ini';
-
     expected = fs.readFileSync('./__tests__/__fixtures__/expectedPlain.txt', 'utf8').toString();
   });
 
 
   test('test, difference between JSON files', () => {
-    expect(gendiff(json1, json2, 'plain')).toBe(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'json'),
+      buildRecursiveFilePath('2', 'json'), 'plain',
+    )).toBe(expected);
   });
 
   test('test, difference between YML files', () => {
-    expect(gendiff(yml1, yml2, 'plain')).toBe(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'yml'),
+      buildRecursiveFilePath('2', 'yml'), 'plain',
+    )).toBe(expected);
   });
 
   test('test, difference between INI files', () => {
-    expect(gendiff(ini1, ini2, 'plain')).toBe(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'ini'),
+      buildRecursiveFilePath('2', 'ini'), 'plain',
+    )).toBe(expected);
   });
 });
 
 describe('test, json format', () => {
-  let json1;
-  let json2;
-  let yml1;
-  let yml2;
-  let ini1;
-  let ini2;
   let expected;
 
   beforeEach(() => {
-    json1 = './__tests__/__fixtures__/JSON/recursive/1.json';
-    json2 = './__tests__/__fixtures__/JSON/recursive/2.json';
-
-    yml1 = './__tests__/__fixtures__/YAML/recursive/1.yml';
-    yml2 = './__tests__/__fixtures__/YAML/recursive/2.yml';
-
-    ini1 = './__tests__/__fixtures__/INI/recursive/1.ini';
-    ini2 = './__tests__/__fixtures__/INI/recursive/2.ini';
-
     expected = JSON.parse(fs.readFileSync('./__tests__/__fixtures__/expectedJSON.txt', 'utf8'));
   });
 
 
   test('test, difference between JSON files', () => {
-    expect(gendiff(json1, json2, 'json')).toEqual(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'json'),
+      buildRecursiveFilePath('2', 'json'), 'json',
+    )).toBe(expected);
   });
 
   test('test, difference between YML files', () => {
-    expect(gendiff(yml1, yml2, 'json')).toEqual(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'yml'),
+      buildRecursiveFilePath('2', 'yml'), 'json',
+    )).toBe(expected);
   });
 
   test('test, difference between INI files', () => {
-    expect(gendiff(ini1, ini2, 'json')).toEqual(expected);
+    expect(gendiff(
+      buildRecursiveFilePath('1', 'ini'),
+      buildRecursiveFilePath('2', 'ini'), 'json',
+    )).toBe(expected);
   });
 });
