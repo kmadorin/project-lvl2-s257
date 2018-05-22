@@ -1,41 +1,38 @@
 import _ from 'lodash';
 
-const valueToString = (value, level) => {
-  if (!_.isObject(value)) {
-    return value;
-  }
-  return `{\n${_.keys(value).map(key =>
-    `${' '.repeat(level + 8)}${key}: ${value[key]}`).join('\n')}\n${' '.repeat(level + 4)}}`;
-};
+const defaultIndent = 4;
+const getIndentOfSize = num => ' '.repeat(num);
+const indentString = '  ';
 
-const renderNode = (node, level = 0) => {
-  const renderStr = (key, value, sign = ' ') =>
-    `${' '.repeat(level + 2)}${sign} ${key}: ${valueToString(value, level)}`;
+const render = (ast, curentIndent = defaultIndent) => {
+  const indent = getIndentOfSize(curentIndent - 2);
+  const constIndent = getIndentOfSize(defaultIndent);
 
-  const renStringFns = {
-    nested: () => {
-      const res = node.children.map(child => renderNode(child, level + 4));
-      return renderStr(node.key, `{\n${res.join('\n')}\n${' '.repeat(level + 4)}}`);
-    },
-    original: () => renderStr(node.key, node.value),
-    updated: () => {
-      const res = [
-        renderStr(node.key, node.newValue, '+'),
-        renderStr(node.key, node.oldValue, '-'),
-      ];
-      return `${res.join('\n')}`;
-    },
-    added: () => renderStr(node.key, node.value, '+'),
-    removed: () => renderStr(node.key, node.value, '-'),
+  const valueToString = (value) => {
+    if (!_.isObject(value)) {
+      return value;
+    }
+
+    return _.keys(value)
+      .map(key =>
+        `{\n${constIndent}${indent}${indentString}${key}: ${valueToString(value[key])}\n${indent}${indentString}}`);
   };
 
+  const genString = (name, value, prefix = '  ') => (`${indent}${prefix}${name}: ${valueToString(value)}`);
 
-  return renStringFns[node.type]();
-};
+  const selectFn = {
+    nested: node => genString(node.key, render(node.children, curentIndent + defaultIndent)),
+    original: node => genString(node.key, node.value),
+    updated: node => [
+      genString(node.key, node.newValue, '+ '),
+      genString(node.key, node.oldValue, '- '),
+    ],
+    added: node => genString(node.key, node.value, '+ '),
+    removed: node => genString(node.key, node.value, '- '),
+  };
 
-const render = (ast = []) => {
-  const res = ast.map(node => renderNode(node, 0));
-  return `{\n${res.join('\n')}\n}`;
+  const resultArray = ast.map(node => selectFn[node.type](node));
+  return ['{', ..._.flatten(resultArray), `${getIndentOfSize(curentIndent - defaultIndent)}}`].join('\n');
 };
 
 export default render;
