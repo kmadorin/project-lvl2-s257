@@ -20,7 +20,7 @@ const render = (ast, curentIndent = defaultIndent) => {
 
   const genString = (name, value, prefix = '  ') => (`${indent}${prefix}${name}: ${valueToString(value)}`);
 
-  const selectFn = {
+  const renderNodeFns = {
     nested: node => genString(node.key, render(node.children, curentIndent + defaultIndent)),
     original: node => genString(node.key, node.value),
     updated: node => [
@@ -31,7 +31,7 @@ const render = (ast, curentIndent = defaultIndent) => {
     removed: node => genString(node.key, node.value, '- '),
   };
 
-  const resultArray = ast.map(node => selectFn[node.type](node));
+  const resultArray = ast.map(node => renderNodeFns[node.type](node));
   return ['{', ..._.flatten(resultArray), `${getIndentOfSize(curentIndent - defaultIndent)}}`].join('\n');
 };
 
